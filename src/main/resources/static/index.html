@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Chat Application</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chat-container {
+            background: #fff;
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            max-width: 90%;
+            overflow: hidden;
+        }
+        .header {
+            background: #764ba2;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            background: #f9f9f9;
+        }
+        .message {
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background: #e0e0e0;
+            display: inline-block;
+        }
+        .message.user {
+            background: #667eea;
+            color: #fff;
+            text-align: right;
+        }
+        .input-container {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            font-size: 1em;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #667eea;
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #5a6dc9;
+        }
+    </style>
+</head>
+<body>
+<div class="chat-container">
+    <div class="header">Real-Time Chat</div>
+    <div class="messages" id="messages">
+        <!-- Chat messages will appear here dynamically -->
+    </div>
+    <div class="input-container">
+        <input type="text" id="messageInput" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+    const messagesContainer = document.getElementById('messages');
+    const messageInput = document.getElementById('messageInput');
+
+    function sendMessage() {
+        const messageText = messageInput.value.trim();
+        if (messageText === '') return;
+
+        // Add message to the UI
+        const message = document.createElement('div');
+        message.className = 'message user';
+        message.textContent = messageText;
+        messagesContainer.appendChild(message);
+
+        // Clear input
+        messageInput.value = '';
+
+        // Scroll to the bottom
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+</script>
+</body>
+</html>
